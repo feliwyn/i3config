@@ -1,0 +1,157 @@
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 0.5
+
+TEXT
+[\
+
+# Download WIRE:
+${if_existing /sys/class/net/enp3s0/operstate up} 
+{"full_text":" | ${exec echo ''}: ↓","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${downspeedf enp3s0}<100}${downspeed enp3s0}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf enp3s0}<300}${downspeed enp3s0}","color":"\#68B1E8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf enp3s0}<700}${downspeed enp3s0}","color":"\#DB70B8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf enp3s0}<1000}${downspeed enp3s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf enp3s0}>=1000}${downspeed enp3s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+# Upload:
+{"full_text":"↑","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${upspeedf enp3s0}<15}${upspeed enp3s0}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf enp3s0}<35}${upspeed enp3s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf enp3s0}>=35}${upspeed enp3s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}"},\
+# LocalIP
+{"full_text":"(${addr enp3s0})","color":"\#888888","separator":false,"separator_block_width":6},\
+${endif}
+${if_existing /sys/class/net/enp3s0/operstate down}
+{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"OFF","color":"\#FF3333","separator":false,"separator_block_width":6},\
+${endif}
+
+
+# Download WIRELESS:
+${if_existing /sys/class/net/wlp5s0/operstate up} 
+{"full_text":" | ${exec echo ''}: ↓","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${downspeedf wlp5s0}<100}${downspeed wlp5s0}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp5s0}<300}${downspeed wlp5s0}","color":"\#68B1E8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp5s0}<700}${downspeed wlp5s0}","color":"\#DB70B8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp5s0}<1000}${downspeed wlp5s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp5s0}>=1000}${downspeed wlp5s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+# Upload:
+{"full_text":"↑","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${upspeedf wlp5s0}<15}${upspeed wlp5s0}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp5s0}<35}${upspeed wlp5s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp5s0}>=35}${upspeed wlp5s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}"},\
+# LocalIP
+{"full_text":"(${addr wlp5s0})","color":"\#888888","separator":false,"separator_block_width":6},\
+${endif}
+${if_existing /sys/class/net/wlp5s0/operstate down}
+{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"OFF","color":"\#FF3333","separator":false,"separator_block_width":6},\
+${endif}
+
+#Disks
+#/
+{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${fs_free_perc /}>5}${fs_free /}(${fs_free_perc /}%)","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"R:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_read /dev/sdb}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"W:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_write /dev/sdb}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${fs_free_perc /}<5}${fs_free /}(${fs_free_perc /}%)","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"R:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_read /dev/sdb}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"W:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_write /dev/sdb}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}"},\
+
+#/home
+{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${fs_free_perc /home}>5}${fs_free /home}(${fs_free_perc /home}%)","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"R:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_read /dev/sda}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"W:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_write /dev/sda}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${fs_free_perc /home}<5}${fs_free /home}(${fs_free_perc /home}%)","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"R:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_read /dev/sda}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"W:","color":"\#888888","separator":false,"separator_block_width":0},\
+{"full_text":"${diskio_write /dev/sda}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}"},\
+
+# Memory:
+{"full_text":"| ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${memperc}<40}${memeasyfree}","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<60}${memeasyfree}","color":"\#F0DC64","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<75}${memeasyfree}","color":"\#FF9933","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}>=85}${memeasyfree}","color":"\#FF3333","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# CPU:
+{"full_text":"| ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${cpu ALL}<25}${cpu ALL}","color":"\#00aad4","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu ALL}<50}${cpu ALL}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu ALL}<75}${cpu ALL}","color":"\#FF9933","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu ALL}<=100}${cpu ALL}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"%","color":"\#888888","separator":false,"separator_block_width":4},\
+
+# CPU temperature:
+{"full_text":"|","color":"\#00aad4","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${acpitemp}<55}${acpitemp}","color":"\#00aad4","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${acpitemp}<65}${acpitemp}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${acpitemp}<75}${acpitemp}","color":"\#FF9933","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${acpitemp}>=75}${acpitemp}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"°C","color":"\#888888","separator":false,"separator_block_width":6},\
+
+# Battery:
+{"full_text":"| ${exec echo ' '}","color":"\#888888","separator":false,"separator_block_width":2},\
+{"full_text":"${if_match ${battery_percent BAT1}<15}${battery_percent BAT1}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"% ${battery_time BAT1}","color":"\#888888","separator":false,"separator_block_width":2},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT1}<50}${battery_percent BAT1}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"% ${battery_time BAT1}","color":"\#888888","separator":false,"separator_block_width":2},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT1}<=99}${battery_percent BAT1}","color":"\#00aad4","separator":false,"separator_block_width":0},\
+{"full_text":"% ${battery_time BAT1}","color":"\#888888","separator":false,"separator_block_width":2},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT1}>=100}FULL","color":"\#00aad4","separator":false,"separator_block_width":0},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# Date:
+{"full_text":"|","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${time %d-%m-%y}","color":"\#888888","separator":false,"separator_block_width":6},\
+# Time:
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":2},\
+{"full_text":"${time %R}","color":"\#888888","separator":false},
+# LocalIP
+{"full_text":"|","color":"\#888888","separator":false,"separator_block_width":2}\
+],

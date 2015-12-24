@@ -153,5 +153,11 @@ ${endif}
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":2},\
 {"full_text":"${time %R}","color":"\#888888","separator":false},
 # LocalIP
+{"full_text":"|","color":"\#888888","separator":false,"separator_block_width":2},\
+
+# Kerne
+{"full_text":"${kernel}","color":"\#888888","separator":false,"separator_block_width":2},\
 {"full_text":"|","color":"\#888888","separator":false,"separator_block_width":2}\
+
+
 ],

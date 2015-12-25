@@ -92,7 +92,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 
-    font pango: Droid Sans Mono 8, Icons 8
+    font pango: Droid Sans Mono 7.5, Icons 7.5
     position top
         colors {
         background #191919

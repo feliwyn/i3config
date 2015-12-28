@@ -190,7 +190,7 @@ exec "sleep 5 && gajim"
 exec "sleep 5 && owncloud"
 exec "sleep 2 && blueman-applet"
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 000000" &
-
+exec compton -b -CG --config ~/.config/compton.conf
 #default floating
 #for_window [class="Nautilus" instance="file_progress"] floating enable
 

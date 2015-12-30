@@ -66,7 +66,7 @@ bindsym $mod+h split h
 # split in vertical orientation
 bindsym $mod+v split v
 
-# fullscreen 
+# fullscreen
 bindsym $mod+f fullscreen toggle
 
 # tiling / floating
@@ -112,7 +112,7 @@ mode "$mode_system" {
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -143,7 +143,7 @@ mode "$mode_monitorKILL" {
      bindsym h exec --no-startup-id xrandr --output HDMI1 --off, mode "default"
      #default
      bindsym Return mode "default"
-     bindsym Escape mode "default"     
+     bindsym Escape mode "default"
 }
 mode "$mode_monitor" {
      bindsym v mode "$mode_positionVGA"
@@ -178,7 +178,7 @@ bindsym $mod+w exec "i3-msg 'workspace 3·Web; exec psd '"
 bindsym $mod+m exec "i3-msg 'workspace 4·Misc; exec /bin/claws-mail'"
 bindsym $mod+x exec "i3-msg 'workspace 5·Music; exec terminator -x mocp'"
 bindsym $mod+e exec /usr/bin/pcmanfm
-bindsym --release $mod+Print exec xfce4-screenshooter 
+bindsym --release $mod+Print exec xfce4-screenshooter
 bindsym --release Print exec --no-startup-id "xfce4-screenshooter -r"
 
 #startup
@@ -186,11 +186,10 @@ exec "sleep 1 && numlockx on"
 exec nm-applet
 exec --no-startup-id "sleep 1 && feh --bg-scale /home/feliwyn/.config/i3/wallpaper.png"
 exec volumeicon
-exec "sleep 5 && gajim"
 exec "sleep 5 && owncloud"
-exec "sleep 2 && blueman-applet"
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 000000" &
 exec compton -b -CG --config ~/.config/compton.conf
+
 #default floating
 #for_window [class="Nautilus" instance="file_progress"] floating enable
 

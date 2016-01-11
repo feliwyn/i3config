@@ -169,14 +169,15 @@ bindsym mod1+j exec mocp -v -5
 
 #conky
 exec conky -c ~/.config/i3/ConkyConf/Clock
-exec conky -c ~/.config/i3/ConkyConf/Network\ enp3s0
-exec conky -c ~/.config/i3/ConkyConf/Network\ wlp5s0
-exec conky -c ~/.config/i3/ConkyConf/Process\ Panel
+#exec conky -c ~/.config/i3/ConkyConf/Network\ enp3s0
+#exec conky -c ~/.config/i3/ConkyConf/Network\ wlp5s0
+#exec conky -c ~/.config/i3/ConkyConf/Process\ Panel
 
 #Custom launcher application
 bindsym $mod+w exec "i3-msg 'workspace 3·Web; exec psd '"
 bindsym $mod+m exec "i3-msg 'workspace 4·Misc; exec /bin/claws-mail'"
 bindsym $mod+x exec "i3-msg 'workspace 5·Music; exec terminator -x mocp'"
+bindsym $mod+Shift+m exec --no-startup-id 'pkill -9 claws-mail'
 bindsym $mod+e exec /usr/bin/pcmanfm
 bindsym --release $mod+Print exec xfce4-screenshooter
 bindsym --release Print exec --no-startup-id "xfce4-screenshooter -r"
@@ -186,7 +187,6 @@ exec "sleep 1 && numlockx on"
 exec nm-applet
 exec --no-startup-id "sleep 1 && feh --bg-scale /home/feliwyn/.config/i3/wallpaper.png"
 exec volumeicon
-exec "sleep 5 && owncloud"
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 000000" &
 exec compton -b -CG --config ~/.config/i3/compton.conf
 

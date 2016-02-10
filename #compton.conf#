@@ -48,5 +48,5 @@ wintypes :
 
 opacity-rule = [ "90:class_g = 'Emacs'", # 10% of transparency
                  "90:class_g = 'Terminator'",
-		 "90:class_g = 'xterm'",
-		 "90:class_g = 'emacs -nw'"]
+		 "90:class_g = 'emacs -nw'",
+		 "50:class_g = 'aRRRtom'"]

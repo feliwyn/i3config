@@ -1,7 +1,7 @@
 set $mod Mod4
 # Font for window titles.
 # Will also be used by the bar unless a different font is used in the bar {} block below.
-font pango:Droid Sans 7.5
+font pango:Droid Sans 11
 #			border	backgr.	text
 client.focused          #4e5c63 #4e5c63 #191919
 client.focused_inactive #2e3436 #2e3436 #b9c8d1
@@ -92,7 +92,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 
-    font pango: Droid Sans Mono 7.5, Icons 7.5
+    font pango: Droid Sans Mono 11, Icons 11
     position top
         colors {
         background #191919
@@ -185,15 +185,14 @@ bindsym --release Print exec --no-startup-id "xfce4-screenshooter -r"
 bindsym F12 exec /usr/bin/yakuake
 
 #startup
+exec --no-startup-id ~/.config/i3/startup.sh
 exec "sleep 1 && numlockx on"
 exec nm-applet
-exec --no-startup-id "sleep 1 && feh --bg-scale /home/feliwyn/.config/i3/wallpaper.png"
 exec volumeicon
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 000000" &
 exec compton -b -CG --config ~/.config/i3/compton.conf
 exec owncloud
 exec pidgin
-
 
 #default floating
 #for_window [class="Nautilus" instance="file_progress"] floating enable

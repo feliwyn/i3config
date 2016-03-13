@@ -1,7 +1,7 @@
 out_to_x no
 out_to_console yes
 short_units yes
-update_interval 1
+update_interval 2
 
 TEXT
 [\
@@ -82,7 +82,7 @@ ${endif}
 {"full_text":"${endif}${endif}"},\
 
 #/home
-{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":" | ${exec echo ''}","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${fs_free_perc /home}>5}${fs_free /home}(${fs_free_perc /home}%)","color":"\#00aad4","separator":false,"separator_block_width":6},\
 {"full_text":"R:","color":"\#888888","separator":false,"separator_block_width":0},\
 {"full_text":"${diskio_read /dev/sda}","color":"\#00aad4","separator":false,"separator_block_width":6},\
@@ -152,11 +152,7 @@ ${endif}
 # Time:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":2},\
 {"full_text":"${time %R}","color":"\#888888","separator":false},
-# LocalIP
-{"full_text":"|","color":"\#888888","separator":false,"separator_block_width":2},\
 
-# Kerne
-{"full_text":"${kernel}","color":"\#888888","separator":false,"separator_block_width":2},\
 {"full_text":"|","color":"\#888888","separator":false,"separator_block_width":2}\
 
 
